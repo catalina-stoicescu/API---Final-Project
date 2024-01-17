@@ -1,0 +1,153 @@
+{
+	"info": {
+		"_postman_id": "28cfd60d-a1e6-425c-a857-fd3a598cb7f4",
+		"name": "CRUD-API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25751602",
+		"_collection_link": "https://orange-crater-394392.postman.co/workspace/f16ca497-fb41-4b17-813d-e6bb8247803f/collection/25751602-28cfd60d-a1e6-425c-a857-fd3a598cb7f4?action=share&source=collection_link&creator=25751602"
+	},
+	"item": [
+		{
+			"name": "Create an Employee",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Teste\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.globals.set(\"eid\",jsonData.id);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var ran = \"Angajat\" + \"{{$randomInt}}\";\r",
+							"pm.globals.set (\"ename\",ran );"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\":\"{{ename}}\",\"salary\":3000,\"age\":44}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{PREV}}/create",
+					"host": [
+						"{{PREV}}"
+					],
+					"path": [
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Employee",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{PREV}}/employee/{{eid}}",
+					"host": [
+						"{{PREV}}"
+					],
+					"path": [
+						"employee",
+						"{{eid}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Employee Data",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\": \"Angajat600\" , \"salary\":3000,\"age\":44}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{PREV}}/update/{{eid}}",
+					"host": [
+						"{{PREV}}"
+					],
+					"path": [
+						"update",
+						"{{eid}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Employee Bis",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{PREV}}/employee/{{eid}}",
+					"host": [
+						"{{PREV}}"
+					],
+					"path": [
+						"employee",
+						"{{eid}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Stergere angajat",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{PREV}}/delete/{{eid}}",
+					"host": [
+						"{{PREV}}"
+					],
+					"path": [
+						"delete",
+						"{{eid}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
